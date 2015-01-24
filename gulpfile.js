@@ -17,7 +17,7 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./public/js/'));
 });
 
-gulp.task('jade', ['bower', 'js'], function () {
+gulp.task('jade', ['js'], function () {
     var sources = gulp.src(['./**/*.js'], {read: false, cwd: './public/'})
                     .pipe(order(['js/lib/**/*.js','**/*.js','js/index.js']));
 
@@ -29,6 +29,10 @@ gulp.task('jade', ['bower', 'js'], function () {
         .pipe(gulp.dest('./public/'));
 });
 
+gulp.task('watch', function () {
+    gulp.watch('./src/**/*.*', ['jade']);
+})
+
 gulp.task('webserver', ['jade'], function () {
     return gulp.src('./public/')
         .pipe(webserver({
@@ -38,4 +42,4 @@ gulp.task('webserver', ['jade'], function () {
         }));
 });
 
-gulp.task('default', ['js', 'bower', 'jade', 'webserver']);
+gulp.task('default', ['webserver', 'watch']);
