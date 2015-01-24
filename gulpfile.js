@@ -1,5 +1,6 @@
 var gulp           = require('gulp'),
     concat         = require('gulp-concat'),
+    sass           = require('gulp-sass'),
     jade           = require('gulp-jade'),
     inject         = require('gulp-inject'),
     mainBowerFiles = require('main-bower-files'),
@@ -19,8 +20,19 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./dist/js/'));
 });
 
-gulp.task('index', ['js'], function () {
-    var sources = gulp.src(['./**/*.js'], {read: false, cwd: './dist/'})
+gulp.task('images', function () {
+    return gulp.src('./images/*.*')
+        pipe(gulp.dest('./dist/images/'));
+});
+
+gulp.task('scss', function () {
+    return gulp.src('./src/scss/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('./dist/css/'));
+});
+
+gulp.task('index', ['js', 'scss'], function () {
+    var sources = gulp.src(['./**/*.js', './**/*.css'], {read: false, cwd: './dist/'})
                     .pipe(order(['js/lib/**/*.js','js/templates.js' , '**/*.js', 'js/index.js']));
 
     return gulp.src('./src/index.jade')
@@ -40,6 +52,9 @@ gulp.task('templates', function () {
         .pipe(gulp.dest('./dist/js/'));
 });
 
+
+gulp.task('build', ['bower', 'images', 'templates', 'js', 'scss', 'index']);
+
 gulp.task('watch', function () {
     gulp.watch('./src/**/*.*', ['templates', 'js', 'index']);
 })
@@ -58,4 +73,4 @@ gulp.task('deploy', function () {
         .pipe(deploy());
 });
 
-gulp.task('default', ['webserver', 'watch']);
+gulp.task('default', ['webserver', 'scss', 'watch']);
