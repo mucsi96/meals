@@ -1,4 +1,5 @@
 var gulp           = require('gulp'),
+    concat         = require('gulp-concat'),
     jade           = require('gulp-jade'),
     inject         = require('gulp-inject'),
     mainBowerFiles = require('main-bower-files'),
@@ -18,11 +19,11 @@ gulp.task('js', function () {
         .pipe(gulp.dest('./dist/js/'));
 });
 
-gulp.task('jade', ['js'], function () {
+gulp.task('index', ['js'], function () {
     var sources = gulp.src(['./**/*.js'], {read: false, cwd: './dist/'})
-                    .pipe(order(['js/lib/**/*.js','**/*.js','js/index.js']));
+                    .pipe(order(['js/lib/**/*.js','js/templates.js' , '**/*.js', 'js/index.js']));
 
-    return gulp.src('./src/*.jade')
+    return gulp.src('./src/index.jade')
         .pipe(inject(sources, {addRootSlash: false}))
         .pipe(jade({
             pretty: true
@@ -30,11 +31,20 @@ gulp.task('jade', ['js'], function () {
         .pipe(gulp.dest('./dist/'));
 });
 
+gulp.task('templates', function () {
+    return gulp.src('./src/templates/*.jade')
+        .pipe(jade({
+            client: true
+        }))
+        .pipe(concat('templates.js'))
+        .pipe(gulp.dest('./dist/js/'));
+});
+
 gulp.task('watch', function () {
-    gulp.watch('./src/**/*.*', ['jade']);
+    gulp.watch('./src/**/*.*', ['templates', 'js', 'index']);
 })
 
-gulp.task('webserver', ['jade'], function () {
+gulp.task('webserver', function () {
     return gulp.src('./dist/')
         .pipe(webserver({
             livereload: true,

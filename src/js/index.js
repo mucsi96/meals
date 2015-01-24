@@ -11,7 +11,9 @@
         crossDomain: true,
         dataType: 'text',
     }).done(function (yaml) {
-        console.log(jsyaml.load(yaml));
+        var data = jsyaml.load(yaml);
+        console.log(data);
+        $('body').append(template(data));
     }).fail(function () {
         console.log('error');
     })
