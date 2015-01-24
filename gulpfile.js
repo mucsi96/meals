@@ -4,7 +4,8 @@ var gulp           = require('gulp'),
     mainBowerFiles = require('main-bower-files'),
     uglify         = require('gulp-uglify'),
     order          = require('gulp-order'),
-    webserver      = require('gulp-webserver');
+    webserver      = require('gulp-webserver'),
+    deploy         = require('gulp-gh-pages');
 
 gulp.task('bower', function () {
     return gulp.src(mainBowerFiles())
@@ -40,6 +41,11 @@ gulp.task('webserver', ['jade'], function () {
             directoryListing: true,
             open: 'index.html'
         }));
+});
+
+gulp.task('deploy', function () {
+    return gulp.src('./public/**/*')
+        .pipe(deploy());
 });
 
 gulp.task('default', ['webserver', 'watch']);
