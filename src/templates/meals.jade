@@ -1,12 +1,12 @@
 h2 Főételek
-ul
-    each meal in main_dishes
-        li= meal.title
+each meal in main_dishes
+    h3= meal.title
+    img(src=meal.image)
 h2 Levesek
-ul
-    each meal in soups
-        li= meal.title
+each meal in soups
+    h3= meal.title
+    img(src=meal.image)
 h2 Desszertek
-ul
-    each meal in desserts
-        li= meal.title
+each meal in desserts
+    h3= meal.title
+    img(src=meal.image)
