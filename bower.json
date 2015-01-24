@@ -1,0 +1,9 @@
+{
+  "name": "meals-app",
+  "version": "0.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "~3.2.5",
+    "jquery": "~2.1.3"
+  }
+}
