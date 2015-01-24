@@ -10,24 +10,24 @@ var gulp           = require('gulp'),
 gulp.task('bower', function () {
     return gulp.src(mainBowerFiles())
         .pipe(uglify())
-        .pipe(gulp.dest('./public/js/lib/'));
+        .pipe(gulp.dest('./dist/js/lib/'));
 });
 
 gulp.task('js', function () {
     return gulp.src('./src/js/**/*.js')
-        .pipe(gulp.dest('./public/js/'));
+        .pipe(gulp.dest('./dist/js/'));
 });
 
 gulp.task('jade', ['js'], function () {
-    var sources = gulp.src(['./**/*.js'], {read: false, cwd: './public/'})
+    var sources = gulp.src(['./**/*.js'], {read: false, cwd: './dist/'})
                     .pipe(order(['js/lib/**/*.js','**/*.js','js/index.js']));
 
     return gulp.src('./src/*.jade')
-        .pipe(inject(sources))
+        .pipe(inject(sources, {addRootSlash: false}))
         .pipe(jade({
             pretty: true
         }))
-        .pipe(gulp.dest('./public/'));
+        .pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('watch', function () {
@@ -35,7 +35,7 @@ gulp.task('watch', function () {
 })
 
 gulp.task('webserver', ['jade'], function () {
-    return gulp.src('./public/')
+    return gulp.src('./dist/')
         .pipe(webserver({
             livereload: true,
             directoryListing: true,
@@ -44,7 +44,7 @@ gulp.task('webserver', ['jade'], function () {
 });
 
 gulp.task('deploy', function () {
-    return gulp.src('./public/**/*')
+    return gulp.src('./dist/**/*')
         .pipe(deploy());
 });
 
