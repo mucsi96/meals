@@ -1,12 +1,24 @@
-h2 Főételek
-each meal in main_dishes
-    h3= meal.title
-    img(src=meal.image)
-h2 Levesek
-each meal in soups
-    h3= meal.title
-    img(src=meal.image)
-h2 Desszertek
-each meal in desserts
-    h3= meal.title
-    img(src=meal.image)
+section
+    header
+        h2 Főételek
+    div(class='meals')
+        each meal in main_dishes
+            article(class='meal')
+                header(class='meal-title')= meal.title
+                div(class=['bg-image', 'bg-center-center'] style='background-image: url(#{meal.image});')
+section
+    header
+        h2 Levesek
+    div(class='meals')
+        each meal in soups
+            article(class='meal')
+                header(class='meal-title')= meal.title
+                div(class=['bg-image', 'bg-center-center'] style='background-image: url(#{meal.image});')
+section
+    header
+        h2 Desszertek
+    div(class='meals')
+        each meal in desserts
+            article(class='meal')
+                header(class='meal-title')= meal.title
+                div(class=['bg-image', 'bg-center-center'] style='background-image: url(#{meal.image});')
