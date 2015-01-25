@@ -3,7 +3,7 @@ var buf = [];
 var jade_mixins = {};
 var jade_interp;
 ;var locals_for_with = (locals || {});(function (desserts, main_dishes, soups, undefined) {
-buf.push("<h2>Főételek</h2>");
+buf.push("<section><header><h2>Főételek</h2></header><div class=\"meals\">");
 // iterate main_dishes
 ;(function(){
   var $$obj = main_dishes;
@@ -12,7 +12,7 @@ buf.push("<h2>Főételek</h2>");
     for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
       var meal = $$obj[$index];
 
-buf.push("<h3>" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_interp)) + "</h3><img" + (jade.attr("src", meal.image, true, false)) + "/>");
+buf.push("<article class=\"meal\"><header class=\"meal-title\">" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_interp)) + "</header><div" + (jade.attr("style", 'background-image: url(' + (meal.image) + ');', true, false)) + " class=\"bg-image bg-center-center\"></div></article>");
     }
 
   } else {
@@ -20,13 +20,13 @@ buf.push("<h3>" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_in
     for (var $index in $$obj) {
       $$l++;      var meal = $$obj[$index];
 
-buf.push("<h3>" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_interp)) + "</h3><img" + (jade.attr("src", meal.image, true, false)) + "/>");
+buf.push("<article class=\"meal\"><header class=\"meal-title\">" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_interp)) + "</header><div" + (jade.attr("style", 'background-image: url(' + (meal.image) + ');', true, false)) + " class=\"bg-image bg-center-center\"></div></article>");
     }
 
   }
 }).call(this);
 
-buf.push("<h2>Levesek</h2>");
+buf.push("</div></section><section><header><h2>Levesek</h2></header><div class=\"meals\">");
 // iterate soups
 ;(function(){
   var $$obj = soups;
@@ -35,7 +35,7 @@ buf.push("<h2>Levesek</h2>");
     for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
       var meal = $$obj[$index];
 
-buf.push("<h3>" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_interp)) + "</h3><img" + (jade.attr("src", meal.image, true, false)) + "/>");
+buf.push("<article class=\"meal\"><header class=\"meal-title\">" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_interp)) + "</header><div" + (jade.attr("style", 'background-image: url(' + (meal.image) + ');', true, false)) + " class=\"bg-image bg-center-center\"></div></article>");
     }
 
   } else {
@@ -43,13 +43,13 @@ buf.push("<h3>" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_in
     for (var $index in $$obj) {
       $$l++;      var meal = $$obj[$index];
 
-buf.push("<h3>" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_interp)) + "</h3><img" + (jade.attr("src", meal.image, true, false)) + "/>");
+buf.push("<article class=\"meal\"><header class=\"meal-title\">" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_interp)) + "</header><div" + (jade.attr("style", 'background-image: url(' + (meal.image) + ');', true, false)) + " class=\"bg-image bg-center-center\"></div></article>");
     }
 
   }
 }).call(this);
 
-buf.push("<h2>Desszertek</h2>");
+buf.push("</div></section><section><header><h2>Desszertek</h2></header><div class=\"meals\">");
 // iterate desserts
 ;(function(){
   var $$obj = desserts;
@@ -58,7 +58,7 @@ buf.push("<h2>Desszertek</h2>");
     for (var $index = 0, $$l = $$obj.length; $index < $$l; $index++) {
       var meal = $$obj[$index];
 
-buf.push("<h3>" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_interp)) + "</h3><img" + (jade.attr("src", meal.image, true, false)) + "/>");
+buf.push("<article class=\"meal\"><header class=\"meal-title\">" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_interp)) + "</header><div" + (jade.attr("style", 'background-image: url(' + (meal.image) + ');', true, false)) + " class=\"bg-image bg-center-center\"></div></article>");
     }
 
   } else {
@@ -66,10 +66,11 @@ buf.push("<h3>" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_in
     for (var $index in $$obj) {
       $$l++;      var meal = $$obj[$index];
 
-buf.push("<h3>" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_interp)) + "</h3><img" + (jade.attr("src", meal.image, true, false)) + "/>");
+buf.push("<article class=\"meal\"><header class=\"meal-title\">" + (jade.escape(null == (jade_interp = meal.title) ? "" : jade_interp)) + "</header><div" + (jade.attr("style", 'background-image: url(' + (meal.image) + ');', true, false)) + " class=\"bg-image bg-center-center\"></div></article>");
     }
 
   }
 }).call(this);
-}.call(this,"desserts" in locals_for_with?locals_for_with.desserts:typeof desserts!=="undefined"?desserts:undefined,"main_dishes" in locals_for_with?locals_for_with.main_dishes:typeof main_dishes!=="undefined"?main_dishes:undefined,"soups" in locals_for_with?locals_for_with.soups:typeof soups!=="undefined"?soups:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
+
+buf.push("</div></section>");}.call(this,"desserts" in locals_for_with?locals_for_with.desserts:typeof desserts!=="undefined"?desserts:undefined,"main_dishes" in locals_for_with?locals_for_with.main_dishes:typeof main_dishes!=="undefined"?main_dishes:undefined,"soups" in locals_for_with?locals_for_with.soups:typeof soups!=="undefined"?soups:undefined,"undefined" in locals_for_with?locals_for_with.undefined:typeof undefined!=="undefined"?undefined:undefined));;return buf.join("");
 }
