@@ -16,7 +16,8 @@ body {
 .meals {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between; }
+  justify-content: space-between;
+  margin: -2% 0; }
 
 .meal {
   position: relative;
@@ -50,5 +51,4 @@ body {
 
 @media screen and (max-width: 750px) {
   .meal {
-    flex: 0 0 100%;
-    margin-bottom: 7%; } }
+    flex: 0 0 100%; } }
